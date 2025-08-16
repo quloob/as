@@ -7,93 +7,109 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      background: #fafafa;
       margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      color: #333;
-    }
-    .container {
-      background: #fff;
-      padding: 20px 25px;
-      border-radius: 15px;
-      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
-      max-width: 420px;
-      width: 100%;
       text-align: center;
     }
+    .container {
+      max-width: 500px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
     h1 {
-      font-size: 22px;
-      margin-bottom: 15px;
-      color: #c0392b;
+      color: #d35400;
+      margin-bottom: 20px;
     }
     label {
       display: block;
       margin: 10px 0 5px;
       text-align: left;
-      font-size: 14px;
       font-weight: bold;
     }
     input, select {
       width: 100%;
-      padding: 10px;
-      margin-bottom: 12px;
-      border-radius: 8px;
+      padding: 8px;
+      margin-bottom: 15px;
       border: 1px solid #ccc;
+      border-radius: 8px;
       font-size: 14px;
     }
     button {
-      background-color: #c0392b;
-      color: white;
-      padding: 12px;
+      background: #27ae60;
+      color: #fff;
       border: none;
-      border-radius: 8px;
-      font-size: 15px;
+      padding: 12px 18px;
+      font-size: 16px;
       cursor: pointer;
-      width: 100%;
-      margin-bottom: 10px;
+      border-radius: 8px;
+      margin: 8px;
     }
-    button:hover {
-      background-color: #a93226;
-    }
-    .call-btn {
-      background-color: #27ae60;
-    }
-    .call-btn:hover {
-      background-color: #1e8449;
+    button.call {
+      background: #2980b9;
     }
     .logo {
-      margin-top: 20px;
-      text-align: center;
+      margin-top: 30px;
     }
     .logo img {
-      width: 120px;
-      border-radius: 10px;
+      max-width: 150px;
+      width: 100%;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>AS Chicken Home Delivery</h1>
-    <form id="orderForm">
-      <label for="quantity">Order Quantity (kg or ₹):</label>
-      <input type="number" id="quantity" name="quantity" min="0.5" step="0.5" placeholder="e.g. 1, 1.5 or 500 Rs" required>
 
-      <label for="preferences">Preferences:</label>
-      <select id="preferences" name="preferences">
-        <option value="None">None</option>
-        <option value="Breast Pieces">Breast Pieces</option>
-        <option value="Leg Pieces">Leg Pieces</option>
+    <form id="orderForm">
+      <label for="quantity">Select Quantity (kg)</label>
+      <select id="quantity">
+        <option value="0.5">0.5 kg</option>
+        <option value="1">1 kg</option>
+        <option value="1.5">1.5 kg</option>
+        <option value="2">2 kg</option>
+        <option value="3">3 kg</option>
+        <option value="5">5 kg</option>
       </select>
 
-      <label for="address">Address:</label>
-      <input type="text" id="address" name="address" placeholder="Enter full delivery address" required>
+      <label for="preference">Preference</label>
+      <select id="preference">
+        <option value="None">None</option>
+        <option value="Breast">Breast</option>
+        <option value="Leg pieces">Leg pieces</option>
+      </select>
+
+      <label for="address">Delivery Address</label>
+      <textarea id="address" rows="3" placeholder="Enter full address"></textarea>
 
       <button type="button" onclick="sendOrder()">Send via WhatsApp</button>
-      <a href="tel:6301926134"><button type="button" class="call-btn">📞 Call AS Chicken</button></a>
+      <button type="button" class="call" onclick="callNow()">Call Us</button>
     </form>
 
-    <di
+    <div class="logo">
+      <img src="logo.png" alt="AS Chicken Logo">
+    </div>
+  </div>
+
+  <script>
+    function sendOrder() {
+      const quantity = document.getElementById("quantity").value;
+      const preference = document.getElementById("preference").value;
+      const address = document.getElementById("address").value;
+
+      const phone = "918885403825"; // Change to your WhatsApp number
+      const message = `Hello, I would like to order:\nQuantity: ${quantity} kg\nPreference: ${preference}\nAddress: ${address}`;
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+      window.open(url, "_blank");
+    }
+
+    function callNow() {
+      window.location.href = "tel:+918885403825"; // Change to your call number
+    }
+  </script>
+</body>
+</html>
