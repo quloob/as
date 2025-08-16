@@ -86,48 +86,43 @@
       height: 0;
     }
     .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      transition: 0.4s;
-      border-radius: 30px;
-    }
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 22px;
-      width: 22px;
-      left: 4px;
-      bottom: 4px;
-      background-color: white;
-      transition: 0.4s;
-      border-radius: 50%;
-    }
-    input:checked + .slider {
-      background-color: #4caf50;
-    }
-    input:checked + .slider:before {
-      transform: translateX(30px);
-    }
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 30px;
+      }
+      
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 22px;
+        width: 22px;
+        top: 4px;       /* align to top */
+        right: 1px;     /* align to right */
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+      
+      input:checked + .slider {
+        background-color: #4caf50;
+      }
+      
+      input:checked + .slider:before {
+        transform: translateX(-30px); /* move left when checked */
+      }
+
   </style>
 </head>
 <body>
   <div class="container">
     <img src="logo.png" alt="AS Chicken Logo" class="logo">
     <h2>Home Delivery</h2>
-    
-    <label>Quantity</label>
-    <select id="quantity">
-      <option value="0.5kg">0.5 Kg</option>
-      <option value="1kg">1 Kg</option>
-      <option value="1.5kg">1.5 Kg</option>
-      <option value="2kg">2 Kg</option>
-    </select>
-    
     <!-- Skin/skinless toggle -->
     <div>
       <label class="switch">
@@ -136,6 +131,13 @@
       </label>
       <span id="skinLabel">Skinless</span>
     </div>
+    <label>Quantity</label>
+    <select id="quantity">
+      <option value="0.5kg">0.5 Kg</option>
+      <option value="1kg">1 Kg</option>
+      <option value="1.5kg">1.5 Kg</option>
+      <option value="2kg">2 Kg</option>
+    </select>
 
     <label>Preference</label>
     <select id="preference">
