@@ -3,209 +3,194 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home Delivery</title>
+  <title>AS Chicken Order</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #fffaf0, #fceabb);
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #fff8f0, #fce4ec);
       margin: 0;
       padding: 0;
       display: flex;
       justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
-
     .container {
-      background: #fff;
-      margin: 20px;
-      padding: 20px;
-      border-radius: 20px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-      width: 100%;
-      max-width: 400px;
-      position: relative;
+      background: white;
+      padding: 25px;
+      border-radius: 18px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+      width: 350px;
+      text-align: center;
     }
-
     .logo {
-      text-align: center;
-      margin-bottom: 10px;
-    }
-    .logo img {
-      width: 80px;
-      height: auto;
-    }
-
-    h2 {
-      text-align: center;
-      margin: 10px 0 20px;
-      font-size: 20px;
-      color: #444;
-    }
-
-    label {
+      width: 120px;
+      margin: 0 auto 15px auto;
       display: block;
-      margin: 12px 0 6px;
-      font-weight: bold;
-      color: #444;
     }
-
-    input, select, textarea {
+    h2 {
+      margin-bottom: 15px;
+      color: #d32f2f;
+    }
+    select, textarea {
       width: 100%;
       padding: 10px;
-      margin-bottom: 12px;
+      margin: 10px 0;
       border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: 500;
+      text-align: left;
+    }
+    button {
+      width: 48%;
+      padding: 10px;
+      margin-top: 12px;
+      border: none;
       border-radius: 10px;
       font-size: 14px;
-    }
-
-    textarea {
-      resize: none;
-      height: 60px;
-    }
-
-    button {
-      width: 100%;
-      background: #ff7b54;
-      color: white;
-      padding: 14px;
-      border: none;
-      border-radius: 12px;
-      font-size: 16px;
+      font-weight: bold;
       cursor: pointer;
-      transition: 0.3s;
+      transition: 0.2s;
+    }
+    .whatsapp {
+      background: #25D366;
+      color: white;
+    }
+    .call {
+      background: #d32f2f;
+      color: white;
     }
     button:hover {
-      background: #ff5a2c;
+      opacity: 0.9;
     }
-
-    /* Toggle Switch */
-    .toggle-container {
-      position: absolute;
-      top: 15px;
-      right: 15px;
+    .button-group {
       display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      color: #444;
+      justify-content: space-between;
     }
+    /* Toggle switch */
     .switch {
       position: relative;
       display: inline-block;
-      width: 50px;
-      height: 24px;
+      width: 60px;
+      height: 30px;
+      margin-top: 10px;
     }
     .switch input {
-      display: none;
+      opacity: 0;
+      width: 0;
+      height: 0;
     }
     .slider {
       position: absolute;
       cursor: pointer;
-      top: 0; left: 0;
-      right: 0; bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       background-color: #ccc;
-      border-radius: 34px;
       transition: 0.4s;
+      border-radius: 30px;
     }
     .slider:before {
       position: absolute;
       content: "";
-      height: 18px; width: 18px;
-      left: 3px; bottom: 3px;
+      height: 22px;
+      width: 22px;
+      left: 4px;
+      bottom: 4px;
       background-color: white;
-      border-radius: 50%;
       transition: 0.4s;
+      border-radius: 50%;
     }
     input:checked + .slider {
-      background-color: #ff7b54;
+      background-color: #4caf50;
     }
     input:checked + .slider:before {
-      transform: translateX(26px);
+      transform: translateX(30px);
     }
-    .slider.round {
-      border-radius: 34px;
-    }
-
   </style>
 </head>
 <body>
   <div class="container">
-
-    <!-- Logo -->
-    <div class="logo">
-      <img src="https://via.placeholder.com/80" alt="Logo">
-    </div>
-
-    <!-- Skin Toggle -->
-    <div class="toggle-container">
-      <span>Skin</span>
+    <img src="logo.png" alt="AS Chicken Logo" class="logo">
+    <h2>Home Delivery</h2>
+    
+    <label>Quantity</label>
+    <select id="quantity">
+      <option value="0.5kg">0.5 Kg</option>
+      <option value="1kg">1 Kg</option>
+      <option value="1.5kg">1.5 Kg</option>
+      <option value="2kg">2 Kg</option>
+    </select>
+    
+    <!-- Skin/skinless toggle -->
+    <div>
       <label class="switch">
         <input type="checkbox" id="skinToggle" checked>
-        <span class="slider round"></span>
+        <span class="slider"></span>
       </label>
-      <span>Skinless</span>
+      <span id="skinLabel">Skinless</span>
     </div>
 
-    <h2>Home Delivery</h2>
+    <label>Preference</label>
+    <select id="preference">
+      <option value="None">None</option>
+      <option value="Breast">Chicken Breast</option>
+      <option value="Leg Pieces">Leg Pieces</option>
+    </select>
 
-    <form id="orderForm">
-      <label for="name">Name</label>
-      <input type="text" id="name" placeholder="Enter your name" required>
+    <label>Size</label>
+    <select id="size">
+      <option value="Small">Small</option>
+      <option value="Medium" selected>Medium</option>
+      <option value="Big">Big</option>
+    </select>
 
-      <label for="address">Address</label>
-      <textarea id="address" placeholder="Delivery address" required></textarea>
+    <label>Recipe</label>
+    <select id="recipe">
+      <option value="Unknown">Unknown</option>
+      <option value="Gravy">Gravy</option>
+      <option value="Biryani">Biryani</option>
+      <option value="Khurma">Khurma</option>
+      <option value="Kabab">Kabab</option>
+    </select>
 
-      <label for="preference">Piece Preference</label>
-      <select id="preference">
-        <option value="">None</option>
-        <option value="breast">Breast</option>
-        <option value="leg">Leg</option>
-      </select>
+    <label>Address</label>
+    <textarea id="address" rows="3" placeholder="Enter your address"></textarea>
 
-      <label for="size">Size</label>
-      <select id="size">
-        <option value="small">Small</option>
-        <option value="medium" selected>Medium</option>
-        <option value="big">Big</option>
-      </select>
-
-      <label for="recipe">Recipe</label>
-      <select id="recipe">
-        <option value="biryani">Biryani</option>
-        <option value="khurma">Khurma</option>
-      </select>
-
-      <label for="quantity">Quantity (Kg or ₹)</label>
-      <input type="number" id="quantity" min="100" max="2000" step="0.5" placeholder="0.5 kg or ₹100-2000">
-
-      <div class="button-group">
+    <div class="button-group">
       <button class="whatsapp" onclick="sendWhatsApp()">Send via WhatsApp</button>
       <button class="call" onclick="callNow()">Call</button>
-      </div>
-    </form>
+    </div>
   </div>
 
   <script>
+    const toggle = document.getElementById("skinToggle");
+    const label = document.getElementById("skinLabel");
+
+    // default is Skinless
+    toggle.addEventListener("change", function() {
+      label.textContent = this.checked ? "Skinless" : "Skin";
+    });
+
     function sendWhatsApp() {
-      const name = document.getElementById("name").value;
-      const address = document.getElementById("address").value;
-      const preference = document.getElementById("preference").value || "None";
+      const quantity = document.getElementById("quantity").value;
+      const preference = document.getElementById("preference").value;
       const size = document.getElementById("size").value;
       const recipe = document.getElementById("recipe").value;
-      const quantity = document.getElementById("quantity").value;
       const skin = document.getElementById("skinToggle").checked ? "Skinless" : "Skin";
+      const address = document.getElementById("address").value;
 
-      let message = `*Home Delivery Order*\n\n` +
-                    `Name: ${name}\n` +
-                    `Address: ${address}\n` +
-                    `Preference: ${preference}\n` +
-                    `Size: ${size}\n` +
-                    `Recipe: ${recipe}\n` +
-                    `Quantity: ${quantity}\n` +
-                    `Option: ${skin}`;
-
+      const message = `Order Details:%0AQuantity: ${quantity}%0APreference: ${preference}%0ASize: ${size}%0ARecipe: ${recipe}%0ASkin: ${skin}%0AAddress: ${address}`;
       const phoneNumber = "918885403825"; // replace with AS Chicken number
       window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
     }
+
     function callNow() {
       const phoneNumber = "918885403825"; // replace with AS Chicken number
       window.location.href = `tel:${phoneNumber}`;
