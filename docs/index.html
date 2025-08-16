@@ -7,116 +7,90 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
-      background: #f9f9f9;
+      background: #fff8f0;
       text-align: center;
-    }
-    img {
-      max-width: 120px;
-      margin-bottom: 15px;
-    }
-    form {
-      background: #fff;
       padding: 20px;
-      border-radius: 10px;
+    }
+    h1 {
+      color: #b30000;
+    }
+    .container {
       max-width: 400px;
       margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      text-align: left;
     }
     label {
-      font-weight: bold;
-      margin-top: 10px;
       display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+      text-align: left;
     }
-    input, textarea, select {
+    input, select, textarea {
       width: 100%;
-      padding: 8px;
-      margin-top: 5px;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 6px;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      font-size: 14px;
     }
     button {
-      margin-top: 15px;
-      padding: 10px;
-      width: 100%;
+      background: #b30000;
+      color: white;
+      padding: 12px;
       border: none;
-      border-radius: 5px;
-      font-size: 16px;
+      border-radius: 8px;
       cursor: pointer;
+      font-size: 16px;
+      width: 100%;
     }
-    .whatsapp {
-      background: #25d366;
-      color: white;
+    button:hover {
+      background: #800000;
     }
-    .call {
-      background: #007bff;
-      color: white;
-      margin-top: 10px;
+    .actions {
+      margin-top: 15px;
+    }
+    .logo {
+      max-width: 120px;
+      margin-bottom: 15px;
     }
   </style>
 </head>
 <body>
-  <img src="A_logo_in_a_digital_vector_illustration_format_fea.png" alt="AS Chicken Logo">
-
-  <h2>AS Chicken Home Delivery</h2>
-
-  <form id="orderForm">
-    <label>Quantity (Kg):</label>
-    <select id="quantityKg">
-      <option value="0.5">0.5 kg</option>
-      <option value="1">1 kg</option>
-      <option value="1.5">1.5 kg</option>
-      <option value="2">2 kg</option>
-      <option value="2.5">2.5 kg</option>
-      <option value="3">3 kg</option>
-      <option value="3.5">3.5 kg</option>
-      <option value="4">4 kg</option>
-    </select>
-
-    <label>Or Enter Amount (₹):</label>
-    <input type="number" id="amount" min="100" max="2000" placeholder="Enter amount in rupees">
-
-    <label>Preference:</label>
+  <div class="container">
+    <img src="A_logo_in_a_digital_vector_illustration_format_fea.png" alt="AS Chicken Logo" class="logo">
+    <h1>AS Chicken Home Delivery</h1>
+    
+    <label for="quantity">Order Quantity (kg or ₹):</label>
+    <input type="number" id="quantity" min="0.5" step="0.5" placeholder="Enter quantity in kg or rupees (100-2000)">
+    
+    <label for="preference">Preferences:</label>
     <select id="preference">
-      <option value="None" selected>None</option>
-      <option value="Breast">Breast Pieces</option>
-      <option value="Leg">Leg Pieces</option>
+      <option value="none" selected>None</option>
+      <option value="breast">Breast Pieces</option>
+      <option value="leg">Leg Pieces</option>
     </select>
-
-    <label>House No & Name:</label>
-    <input type="text" id="house" placeholder="House number and name">
-
-    <label>Nearby (Optional):</label>
-    <input type="text" id="nearby" placeholder="Nearby landmark">
-
-    <label>Address:</label>
-    <textarea id="address">Usman Nagar, Rajampet,
-AP - 516115</textarea>
-
-    <button type="button" class="whatsapp" onclick="sendOrder()">Send via WhatsApp</button>
-    <a href="tel:6301926134"><button type="button" class="call">📞 Call AS Chicken</button></a>
-  </form>
+    
+    <label for="address">Delivery Address:</label>
+    <textarea id="address" rows="3" placeholder="Enter your delivery address"></textarea>
+    
+    <div class="actions">
+      <button onclick="sendOrder()">Send via WhatsApp</button>
+      <a href="tel:+916301926134"><button style="background:#007BFF; margin-top:10px;">📞 Call AS Chicken</button></a>
+    </div>
+  </div>
 
   <script>
     function sendOrder() {
-      const qty = document.getElementById("quantityKg").value;
-      const amt = document.getElementById("amount").value;
-      const pref = document.getElementById("preference").value;
-      const house = document.getElementById("house").value;
-      const nearby = document.getElementById("nearby").value;
-      const addr = document.getElementById("address").value;
-
-      let orderDetails = `*AS Chicken Home Delivery Order*\n`;
-      orderDetails += `Quantity: ${qty} kg\n`;
-      if (amt) orderDetails += `Amount: ₹${amt}\n`;
-      orderDetails += `Preference: ${pref}\n`;
-      orderDetails += `House: ${house}\n`;
-      if (nearby) orderDetails += `Nearby: ${nearby}\n`;
-      orderDetails += `Address: ${addr}`;
-
-      const encoded = encodeURIComponent(orderDetails);
-      window.open(`https://wa.me/916301926134?text=${encoded}`, "_blank");
+      const quantity = document.getElementById('quantity').value;
+      const preference = document.getElementById('preference').value;
+      const address = document.getElementById('address').value;
+      let message = `Hello AS Chicken, I would like to order:\n\nQuantity: ${quantity}\nPreference: ${preference}\n\nDelivery Address:\n${address}`;
+      const phone = "916301926134"; // Your WhatsApp number
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank");
     }
   </script>
 </body>
