@@ -32,7 +32,7 @@
       margin-bottom: 15px;
       color: #d32f2f;
     }
-    select, textarea, input[type="number"] {
+    select, textarea {
       width: 100%;
       padding: 10px;
       margin: 10px 0;
@@ -45,15 +45,6 @@
       margin: 10px 0 5px;
       font-weight: 500;
       text-align: left;
-    }
-    .radio-group, .checkbox-group {
-      display: flex;
-      justify-content: space-between;
-      margin: 10px 0;
-    }
-    .radio-group label, .checkbox-group label {
-      font-size: 14px;
-      font-weight: normal;
     }
     button {
       width: 48%;
@@ -81,6 +72,47 @@
       display: flex;
       justify-content: space-between;
     }
+    /* Toggle switch */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 30px;
+      margin-top: 10px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 30px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 22px;
+      width: 22px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #4caf50;
+    }
+    input:checked + .slider:before {
+      transform: translateX(30px);
+    }
   </style>
 </head>
 <body>
@@ -95,16 +127,15 @@
       <option value="1.5kg">1.5 Kg</option>
       <option value="2kg">2 Kg</option>
     </select>
-    <!-- Skin Toggle -->
-    <div class="flex items-center justify-between mb-4">
-      <span class="text-gray-700">Skinless</span>
-      <label class="toggle">
+    
+    <!-- Skin/skinless toggle -->
+    <div>
+      <label class="switch">
         <input type="checkbox" id="skinToggle" checked>
         <span class="slider"></span>
       </label>
-      <span class="text-gray-700">Skin</span>
+      <span id="skinLabel">Skinless</span>
     </div>
-
 
     <label>Preference</label>
     <select id="preference">
@@ -133,18 +164,26 @@
     <textarea id="address" rows="3" placeholder="Enter your address"></textarea>
 
     <div class="button-group">
-      <button class="whatsapp" onclick="sendWhatsApp()">Send</button>
+      <button class="whatsapp" onclick="sendWhatsApp()">Send via WhatsApp</button>
       <button class="call" onclick="callNow()">Call</button>
     </div>
   </div>
 
   <script>
+    const toggle = document.getElementById("skinToggle");
+    const label = document.getElementById("skinLabel");
+
+    // default is Skinless
+    toggle.addEventListener("change", function() {
+      label.textContent = this.checked ? "Skinless" : "Skin";
+    });
+
     function sendWhatsApp() {
       const quantity = document.getElementById("quantity").value;
       const preference = document.getElementById("preference").value;
       const size = document.getElementById("size").value;
       const recipe = document.getElementById("recipe").value;
-      const skin = document.getElementById("skinToggle").checked ? "Skin" : "Skinless";
+      const skin = document.getElementById("skinToggle").checked ? "Skinless" : "Skin";
       const address = document.getElementById("address").value;
 
       const message = `Order Details:%0AQuantity: ${quantity}%0APreference: ${preference}%0ASize: ${size}%0ARecipe: ${recipe}%0ASkin: ${skin}%0AAddress: ${address}`;
@@ -156,4 +195,6 @@
       const phoneNumber = "918885403825"; // replace with AS Chicken number
       window.location.href = `tel:${phoneNumber}`;
     }
-  </script
+  </script>
+</body>
+</html>
