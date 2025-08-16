@@ -167,6 +167,7 @@
       <button class="whatsapp" onclick="sendWhatsApp()">Send via WhatsApp</button>
       <button class="call" onclick="callNow()">Call</button>
     </div>
+    <img src="qr.png" alt="QR code" class="qr">
   </div>
 
   <script>
@@ -187,12 +188,12 @@
       const address = document.getElementById("address").value;
 
       const message = `Order Details:%0AQuantity: ${quantity}%0APreference: ${preference}%0ASize: ${size}%0ARecipe: ${recipe}%0ASkin: ${skin}%0AAddress: ${address}`;
-      const phoneNumber = "918885403825"; // replace with AS Chicken number
+      const phoneNumber = "916301926134"; // replace with AS Chicken number
       window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
     }
 
     function callNow() {
-      const phoneNumber = "918885403825"; // replace with AS Chicken number
+      const phoneNumber = "916301926134"; // replace with AS Chicken number
       window.location.href = `tel:${phoneNumber}`;
     }
   </script>
