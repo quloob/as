@@ -86,7 +86,7 @@
 <body>
   <div class="container">
     <img src="logo.png" alt="AS Chicken Logo" class="logo">
-    <h2>AS Chicken Order</h2>
+    <h2>Home Delivery</h2>
     
     <label>Quantity</label>
     <select id="quantity">
@@ -95,11 +95,21 @@
       <option value="1.5kg">1.5 Kg</option>
       <option value="2kg">2 Kg</option>
     </select>
+    <!-- Skin Toggle -->
+    <div class="flex items-center justify-between mb-4">
+      <span class="text-gray-700">Skinless</span>
+      <label class="toggle">
+        <input type="checkbox" id="skinToggle" checked>
+        <span class="slider"></span>
+      </label>
+      <span class="text-gray-700">Skin</span>
+    </div>
+
 
     <label>Preference</label>
     <select id="preference">
       <option value="None">None</option>
-      <option value="Breast">Breast</option>
+      <option value="Breast">Chicken Breast</option>
       <option value="Leg Pieces">Leg Pieces</option>
     </select>
 
@@ -112,15 +122,12 @@
 
     <label>Recipe</label>
     <select id="recipe">
+      <option value="Unknown">Unknown</option>
+      <option value="Gravy">Gravy</option>
       <option value="Biryani">Biryani</option>
       <option value="Khurma">Khurma</option>
+      <option value="Kabab">Kabab</option>
     </select>
-
-    <label>Skin Option</label>
-    <div class="radio-group">
-      <label><input type="radio" name="skin" value="Skin" checked> Skin</label>
-      <label><input type="radio" name="skin" value="Skinless"> Skinless</label>
-    </div>
 
     <label>Address</label>
     <textarea id="address" rows="3" placeholder="Enter your address"></textarea>
@@ -137,7 +144,7 @@
       const preference = document.getElementById("preference").value;
       const size = document.getElementById("size").value;
       const recipe = document.getElementById("recipe").value;
-      const skin = document.querySelector('input[name="skin"]:checked').value;
+      const skin = document.getElementById("skinToggle").checked ? "Skin" : "Skinless";
       const address = document.getElementById("address").value;
 
       const message = `Order Details:%0AQuantity: ${quantity}%0APreference: ${preference}%0ASize: ${size}%0ARecipe: ${recipe}%0ASkin: ${skin}%0AAddress: ${address}`;
