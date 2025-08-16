@@ -3,113 +3,150 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AS Chicken Home Delivery</title>
+  <title>AS Chicken Order</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #fafafa;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #fff8f0, #fce4ec);
       margin: 0;
       padding: 0;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
     .container {
-      max-width: 500px;
-      margin: 20px auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      background: white;
+      padding: 25px;
+      border-radius: 18px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+      width: 350px;
+      text-align: center;
     }
-    h1 {
-      color: #d35400;
-      margin-bottom: 20px;
-    }
-    label {
+    .logo {
+      width: 120px;
+      margin: 0 auto 15px auto;
       display: block;
-      margin: 10px 0 5px;
-      text-align: left;
-      font-weight: bold;
     }
-    input, select {
-      width: 100%;
-      padding: 8px;
+    h2 {
       margin-bottom: 15px;
+      color: #d32f2f;
+    }
+    select, textarea, input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
       border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 14px;
     }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: 500;
+      text-align: left;
+    }
+    .radio-group, .checkbox-group {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+    }
+    .radio-group label, .checkbox-group label {
+      font-size: 14px;
+      font-weight: normal;
+    }
     button {
-      background: #27ae60;
-      color: #fff;
+      width: 48%;
+      padding: 10px;
+      margin-top: 12px;
       border: none;
-      padding: 12px 18px;
-      font-size: 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: bold;
       cursor: pointer;
-      border-radius: 8px;
-      margin: 8px;
+      transition: 0.2s;
     }
-    button.call {
-      background: #2980b9;
+    .whatsapp {
+      background: #25D366;
+      color: white;
     }
-    .logo {
-      margin-top: 30px;
+    .call {
+      background: #d32f2f;
+      color: white;
     }
-    .logo img {
-      max-width: 150px;
-      width: 100%;
+    button:hover {
+      opacity: 0.9;
+    }
+    .button-group {
+      display: flex;
+      justify-content: space-between;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>AS Chicken Home Delivery</h1>
+    <img src="logo.png" alt="AS Chicken Logo" class="logo">
+    <h2>AS Chicken Order</h2>
+    
+    <label>Quantity</label>
+    <select id="quantity">
+      <option value="0.5kg">0.5 Kg</option>
+      <option value="1kg">1 Kg</option>
+      <option value="1.5kg">1.5 Kg</option>
+      <option value="2kg">2 Kg</option>
+    </select>
 
-    <form id="orderForm">
-      <label for="quantity">Select Quantity (kg)</label>
-      <select id="quantity">
-        <option value="0.5">0.5 kg</option>
-        <option value="1">1 kg</option>
-        <option value="1.5">1.5 kg</option>
-        <option value="2">2 kg</option>
-        <option value="3">3 kg</option>
-        <option value="5">5 kg</option>
-      </select>
+    <label>Preference</label>
+    <select id="preference">
+      <option value="None">None</option>
+      <option value="Breast">Breast</option>
+      <option value="Leg Pieces">Leg Pieces</option>
+    </select>
 
-      <label for="preference">Preference</label>
-      <select id="preference">
-        <option value="None">None</option>
-        <option value="Breast">Breast</option>
-        <option value="Leg pieces">Leg pieces</option>
-      </select>
+    <label>Size</label>
+    <select id="size">
+      <option value="Small">Small</option>
+      <option value="Medium" selected>Medium</option>
+      <option value="Big">Big</option>
+    </select>
 
-      <label for="address">Delivery Address</label>
-      <textarea id="address" rows="3" placeholder="Enter full address"></textarea>
+    <label>Recipe</label>
+    <select id="recipe">
+      <option value="Biryani">Biryani</option>
+      <option value="Khurma">Khurma</option>
+    </select>
 
-      <button type="button" onclick="sendOrder()">Send via WhatsApp</button>
-      <button type="button" class="call" onclick="callNow()">Call Us</button>
-    </form>
+    <label>Skin Option</label>
+    <div class="radio-group">
+      <label><input type="radio" name="skin" value="Skin" checked> Skin</label>
+      <label><input type="radio" name="skin" value="Skinless"> Skinless</label>
+    </div>
 
-    <div class="logo">
-      <img src="logo.png" alt="AS Chicken Logo">
+    <label>Address</label>
+    <textarea id="address" rows="3" placeholder="Enter your address"></textarea>
+
+    <div class="button-group">
+      <button class="whatsapp" onclick="sendWhatsApp()">Send</button>
+      <button class="call" onclick="callNow()">Call</button>
     </div>
   </div>
 
   <script>
-    function sendOrder() {
+    function sendWhatsApp() {
       const quantity = document.getElementById("quantity").value;
       const preference = document.getElementById("preference").value;
+      const size = document.getElementById("size").value;
+      const recipe = document.getElementById("recipe").value;
+      const skin = document.querySelector('input[name="skin"]:checked').value;
       const address = document.getElementById("address").value;
 
-      const phone = "918885403825"; // Change to your WhatsApp number
-      const message = `Hello, I would like to order:\nQuantity: ${quantity} kg\nPreference: ${preference}\nAddress: ${address}`;
-      const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-
-      window.open(url, "_blank");
+      const message = `Order Details:%0AQuantity: ${quantity}%0APreference: ${preference}%0ASize: ${size}%0ARecipe: ${recipe}%0ASkin: ${skin}%0AAddress: ${address}`;
+      const phoneNumber = "918885403825"; // replace with AS Chicken number
+      window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
     }
 
     function callNow() {
-      window.location.href = "tel:+918885403825"; // Change to your call number
+      const phoneNumber = "918885403825"; // replace with AS Chicken number
+      window.location.href = `tel:${phoneNumber}`;
     }
-  </script>
-</body>
-</html>
+  </script
