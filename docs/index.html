@@ -118,13 +118,8 @@
       }
     .qrcode {
       width: 120px;
-      margin: 15px auto 0 auto; /* add margin on top, push it away from content */
-      display: block;
-      position: absolute;
-      bottom: 15px;  /* stick to bottom */
-      left: 0;
-      right: 0;
-    }
+      margin: 0 auto 0px auto;
+      display: block;    }
 
   </style>
 </head>
@@ -178,7 +173,7 @@
       <button class="whatsapp" onclick="sendWhatsApp()">Send via WhatsApp</button>
       <button class="call" onclick="callNow()">Call</button>
     </div>
-    <img src="qr.png" alt="QR code" class="qr">
+    <img src="qr.png" alt="QR code" class="qrcode">
   </div>
 
   <script>
